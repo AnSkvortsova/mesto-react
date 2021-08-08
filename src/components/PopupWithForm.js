@@ -5,7 +5,7 @@ export function PopupWithForm(props) {
         <div className="popup__container" id={`popup__${props.name}-container`}>
           <button className="popup__close" id={`popup__${props.name}-close`} type="button" aria-label="закрыть" onClick={props.onClose}></button>
           <h2 className="popup__title">{props.title}</h2>
-          <form className="popup__form" name={props.name} noValidate>
+          <form className="popup__form" name={props.name} onSubmit={props.onSubmit} noValidate>
             { props.children }
             <button className="popup__submit" id={`popup__submit-${props.name}`} type="submit" aria-label="сохранить">{props.button}</button>
           </form>
