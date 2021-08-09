@@ -17,32 +17,9 @@ function App() {
   const [isEditAvatarPopupOpen, setEditAvatarState] = useState(false);
   const [selectedCard, setSelectedCard] = useState(null);
   const [isConfirmPopupOpen, setConfirmPopupState] = useState(false);
-  
+
   // пользователь
   const [currentUser, setCurrentUserState] = useState({});
-
-  useEffect(() => {
-    
-      api.getUserInfo()
-    
-    .then((userData) => {
-      setCurrentUserState(userData);
-    })
-    .catch((err) => {
-      console.log(err)
-    })
-  }, []);
-
-  function handleUpdateUser (data) {
-    api.pushUserInfo(data)
-    .then((result) => {
-      setCurrentUserState(result);
-      closeAllPopups();
-    })
-    .catch((err) => {
-      console.log(err)
-    })
-  }
 
   // открытие и закрытие попапов
   function handleEditProfileClick() {
@@ -68,6 +45,42 @@ function App() {
     setSelectedCard(null);
     setConfirmPopupState(false);
   };
+  
+  // работа с данными пользователя
+
+  useEffect(() => {
+    
+      api.getUserInfo()
+    
+    .then((userData) => {
+      setCurrentUserState(userData);
+    })
+    .catch((err) => {
+      console.log(err)
+    })
+  }, []);
+
+  function handleUpdateUser (data) {
+    api.pushUserInfo(data)
+    .then((result) => {
+      setCurrentUserState(result);
+      closeAllPopups();
+    })
+    .catch((err) => {
+      console.log(err)
+    })
+  }
+
+  function handleUpdateAvatar(data) {
+    api.updateAvatar(data)
+    .then((result) => {
+      setCurrentUserState(result);
+      closeAllPopups();
+    })
+    .catch((err) => {
+      console.log(err)
+    })
+  }
 
   return (
     <CurrentUserContext.Provider value={currentUser}>
@@ -86,7 +99,7 @@ function App() {
 
       <EditProfilePopup isOpen={isEditProfilePopupOpen} onClose={closeAllPopups} onUpdateUser={handleUpdateUser} />
       <AddPlacePopup isOpen={isAddPlacePopupOpen} onClose={closeAllPopups} />
-      <EditAvatarPopup isOpen={isEditAvatarPopupOpen} onClose={closeAllPopups} />
+      <EditAvatarPopup isOpen={isEditAvatarPopupOpen} onClose={closeAllPopups} onUpdateAvatar={handleUpdateAvatar} />
       <ImagePopup card={!!selectedCard && selectedCard} onClose={closeAllPopups} />
       <ConfirmPopup isOpen={isConfirmPopupOpen} onClose={closeAllPopups} />
     </div>
