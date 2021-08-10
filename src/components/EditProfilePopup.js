@@ -25,7 +25,7 @@ export function EditProfilePopup(props) {
       name: userName,
       about: userDescription,
     })
-  }
+  };
 
   return(
     <PopupWithForm name="edit" title="Редактировать профиль" button="Сохранить" 

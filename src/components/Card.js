@@ -5,18 +5,22 @@ export function Card(props) {
   const currentUser = React.useContext(CurrentUserContext);
 
   const isOwn = props.card.owner._id === currentUser._id;
-  const cardDeleteButtonClassName = (`${isOwn ? 'element__trash' : ''}`);
+  const cardDeleteButtonClassName = (`element__trash ${isOwn ? '' : 'element__trash_hidden'}`);
 
   const isLiked = props.card.likes.some(i => i._id === currentUser._id);
   const cardLikeButtonClassName = (`element__heart ${isLiked ? 'element__heart_active' : ''}`);
 
   function handleClick() {
     props.onCardClick(props.card);
-  } 
+  };
 
   function handleLikeClick() {
     props.onCardLike(props.card);
-  }
+  };
+
+ // function handleSubmitDelete() {
+ //   props.onCardDelete(props.card);
+ // }
   
   return(
     <article className="element">
