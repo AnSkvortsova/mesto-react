@@ -18,14 +18,14 @@ export function Card(props) {
     props.onCardLike(props.card);
   };
 
- // function handleSubmitDelete() {
- //   props.onCardDelete(props.card);
- // }
+  function handletDeleteClick() {
+    props.onDeleteClick(props.card);
+  }
   
   return(
     <article className="element">
       <img className="element__image" src={props.card.link}   alt={props.card.name} onClick={handleClick} />
-      <button className={cardDeleteButtonClassName} type="button" aria-label="удалить" onClick={props.onDeleteClick} ></button>
+      <button className={cardDeleteButtonClassName} type="button" aria-label="удалить" onClick={handletDeleteClick} ></button>
       <div className="element__bottom">
         <h2 className="element__text">{props.card.name}</h2>
         <div className="element__likes">

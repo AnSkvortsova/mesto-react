@@ -16,7 +16,7 @@ function App() {
   const [isAddPlacePopupOpen, setAddPlaceState] = useState(false);
   const [isEditAvatarPopupOpen, setEditAvatarState] = useState(false);
   const [selectedCard, setSelectedCard] = useState(null);
-  const [isConfirmPopupOpen, setConfirmPopupOpen] = useState(null);
+  const [removedCard, setRemovedCard] = useState(null);
 
   // пользователь и карточки
   const [currentUser, setCurrentUserState] = useState({});
@@ -36,7 +36,7 @@ function App() {
     setSelectedCard(card);
   };
   function handleDeleteClick(card) {
-    setConfirmPopupOpen(card);
+    setRemovedCard(card);
   };
 
   function closeAllPopups() {
@@ -44,7 +44,7 @@ function App() {
     setAddPlaceState(false);
     setEditAvatarState(false);
     setSelectedCard(null);
-    setConfirmPopupOpen(null);
+    setRemovedCard(null);
   };
   
   
@@ -142,7 +142,7 @@ function App() {
       <AddPlacePopup isOpen={isAddPlacePopupOpen} onClose={closeAllPopups} onAddPlace={handleAddPlaceSubmit} />
       <EditAvatarPopup isOpen={isEditAvatarPopupOpen} onClose={closeAllPopups} onUpdateAvatar={handleUpdateAvatar} />
       <ImagePopup card={!!selectedCard && selectedCard} onClose={closeAllPopups} />
-      <ConfirmPopup isOpen={isConfirmPopupOpen} onClose={closeAllPopups} onCardDelete={handleCardDelete} />
+      <ConfirmPopup card={removedCard} onClose={closeAllPopups} onCardDelete={handleCardDelete} />
     </div>
     </CurrentUserContext.Provider>
   );
