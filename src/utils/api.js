@@ -85,4 +85,5 @@ const options = {
     'Content-Type': 'application/json',
   }
 }
-export const api = new Api(options);
+const api = new Api(options);
+export default api;
