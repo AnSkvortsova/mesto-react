@@ -112,7 +112,7 @@ function App() {
   function handleCardDelete(card) {
     api.removeCard(card._id)
     .then(() => {
-      setCardsState(cards.filter(item => item._id !== card._id));
+      setCardsState((state) => state.filter(item => item._id !== card._id));
       closeAllPopups();
     })
     .catch((err) => {
@@ -142,7 +142,7 @@ function App() {
       <AddPlacePopup isOpen={isAddPlacePopupOpen} onClose={closeAllPopups} onAddPlace={handleAddPlaceSubmit} />
       <EditAvatarPopup isOpen={isEditAvatarPopupOpen} onClose={closeAllPopups} onUpdateAvatar={handleUpdateAvatar} />
       <ImagePopup card={!!selectedCard && selectedCard} onClose={closeAllPopups} />
-      <ConfirmPopup card={removedCard} onClose={closeAllPopups} onCardDelete={handleCardDelete} />
+      <ConfirmPopup isOpen={removedCard} onClose={closeAllPopups} onCardDelete={handleCardDelete} />
     </div>
     </CurrentUserContext.Provider>
   );

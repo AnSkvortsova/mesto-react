@@ -28,14 +28,13 @@ export function Main(props) {
 
       <section className="elements page__section">
         {props.cards.map((card) => (
-          <div key={card._id}>
             <Card 
+            key={card._id}
             card={card} 
             onCardClick={props.onCardClick} 
             onDeleteClick={props.onDeleteClick} 
             onCardLike={props.onCardLike} 
             onCardDelete={props.onCardDelete} />
-          </div>
         ))}
       </section>
 
