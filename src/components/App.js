@@ -19,7 +19,10 @@ function App() {
   const [removedCard, setRemovedCard] = useState(null);
 
   // пользователь и карточки
-  const [currentUser, setCurrentUserState] = useState({});
+  const [currentUser, setCurrentUserState] = useState({
+    name: '',
+    about: '',
+  });
   const [cards, setCardsState] = useState([]);
 
   // открытие и закрытие попапов
